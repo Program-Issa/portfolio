@@ -1,0 +1,105 @@
+body {
+    background-color: black;
+}
+
+
+.container h1 {
+    text-align: center;
+    color: #00c8ff;
+    margin-top: 50px;
+}
+
+.irast {
+    display:block;
+    margin: 0 auto;
+    padding-top: 45px;
+    width:150px;
+    height:200px;
+   
+}
+
+.products {
+    display:flex;
+    flex-direction: column;
+    margin-top: 130px;
+    align-items: center;
+    gap: 40px;
+}
+
+.product {
+  display: inline-block; /* ブロック要素にする（横幅いっぱい使える） */
+  flex-direction: column;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: #fff; /* 文字色 */
+  padding: 12px 20px; /* 内側の余白 */
+  text-align: center; /* 文字を中央寄せ */
+  border-radius: 30px; /* 角を丸く */
+  text-decoration: none; /* 下線を消す */
+  font-size: 1.2rem;
+  font-weight: bold;
+  width:50%;
+  transition: background-color 0.3s ease; /* ホバー時のアニメーション */
+}
+
+.product:hover {
+  background-color: #009ec4; /* ホバー時に色を少し濃く */
+}
+
+
+/* ====== Tablet (～1024px) ====== */
+@media (max-width: 1024px) {
+  .container h1 { margin-top: 48px; font-size: 2rem; text-align: center; }
+
+  .irast { padding-top: 40px; width: min(28vw, 200px); }
+
+  .products { max-width: 680px; gap: 32px;margin: 0 auto;margin-top: 50px; }
+
+  .product {
+    max-width: 600px;     /* タブレットで少し広めでもOK */
+    padding: 14px 22px;
+    font-size: 1.15rem;
+  }
+}
+
+/* ====== Smartphone (～600px) ====== */
+@media (max-width: 600px) {
+  .container h1 { margin-top: 36px; font-size: 1.6rem; text-align: center; }
+
+  .irast { padding-top: 28px; width: min(55vw, 180px); }
+
+  .products { max-width: 520px; gap: 24px; padding: 0 14px; }
+
+  .product {
+    max-width: 100%;      /* ほぼ全幅にして“横スライド”の余地を消す */
+    padding: 14px 18px;
+    font-size: 1.05rem;
+    border-radius: 20px;
+  }
+
+  /* :hover ない端末向けの暴れ防止は軽めに */
+  .product:hover { filter: none; opacity: 0.95; }
+}
+
+
+/* 初期状態：少し下＆透明 */
+.product.reveal-from-bottom {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+
+/* 表示状態：元の位置＆不透明 */
+.product.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 動きを減らす設定のユーザー向け（任意） */
+@media (prefers-reduced-motion: reduce) {
+  .product.reveal-from-bottom {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
